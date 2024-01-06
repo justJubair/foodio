@@ -1,19 +1,31 @@
+/* eslint-disable react/prop-types */
+import axios from "axios";
 import Loader from "../Loader/Loader";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 // Icons
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-/* eslint-disable react/prop-types */
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`
 const PopularFoodSlide = ({ foods }) => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm()
-    
-      const onSubmit = (data) => {
-            console.log(data)
-        }
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async(data) => {
+        const imageFile = {image: data.image[0]}
+        
+        const name = data.name;
+        const dbResponse = await axios.post(image_hosting_api, imageFile, {
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        })
+        console.log(dbResponse.data)
+  };
 
   const sliderLeft = () => {
     let slider = document.getElementById("populer");
@@ -33,20 +45,43 @@ const PopularFoodSlide = ({ foods }) => {
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-bold">Popular</h3>
         <div className="flex items-center gap-2">
-          <button className="btn btn-sm text-orange-500 mr-5" onClick={()=>document.getElementById('my_modal_1').showModal()}>Add More</button>
+          <button
+            className="btn btn-sm text-orange-500 mr-5"
+            onClick={() => document.getElementById("my_modal_1").showModal()}
+          >
+            Add More
+          </button>
           {/* modal content */}
           <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
-              <h3 className="font-bold text-lg">Hello!</h3>
-              <p className="py-4">
-                Press ESC key or click the button below to close
-              </p>
+              <h2 className="text-center font-medium mb-6 text-lg text-orange-500">
+                Add new item to your kitchen
+              </h2>
+              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+                <label htmlFor="image">
+                  <span>Upload the food image</span>
+                  <input
+                    type="file"
+                    {...register("image", {required:true})}
+                    className="file-input file-input-bordered w-full max-w-xs mt-1"
+                  />
+                </label>
+                <label htmlFor="food name">
+                  <input
+                    type="text"
+                    {...register("name", {required:true})}
+                    placeholder="Food name"
+                    className="input input-bordered w-full max-w-xs"
+                  />
+                </label>
+                    <button type="submit" className="btn btn-block bg-orange-500 text-white hover:bg-orange-600">Add Instantly</button>
+              </form>
               <div className="modal-action">
-                <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className="btn">Close</button>
-                </form>
-              </div>
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn">Close</button>
+                  </form>
+                </div>
             </div>
           </dialog>
           <MdChevronLeft
