@@ -4,10 +4,11 @@ import Loader from "../Loader/Loader";
 import { useForm } from "react-hook-form";
 // Icons
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`
-const PopularFoodSlide = ({ foods }) => {
+const PopularFoodSlide = ({ foods, setFoods }) => {
   const {
     register,
     handleSubmit,
@@ -17,15 +18,25 @@ const PopularFoodSlide = ({ foods }) => {
 
   const onSubmit = async(data) => {
         const imageFile = {image: data.image[0]}
-        
+        const itemId = Math.ceil(Math.random()*99990)
         const name = data.name;
         const dbResponse = await axios.post(image_hosting_api, imageFile, {
             headers: {
                 "content-type": "multipart/form-data"
             }
         })
-        console.log(dbResponse.data)
+        if(dbResponse?.data?.data?.display_url){
+
+            const newItem = {Id: itemId, Name: name, ImageUrl: dbResponse?.data?.data?.display_url}
+            setFoods([...foods, newItem])
+            toast.success(`${name} has been added`)
+            reset()
+
+        }
+       
+        
   };
+
 
   const sliderLeft = () => {
     let slider = document.getElementById("populer");

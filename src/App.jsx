@@ -3,6 +3,7 @@ import Banner from "./components/Banner/Banner";
 import Navbar from "./components/Navbar/Navbar";
 import PopularFoodSlide from "./components/PopularFoodSlide/PopularFoodSlide";
 import Loader from "./components/Loader/Loader";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [foods, setFoods] = useState([])
@@ -28,7 +29,8 @@ if(foods.length<0){
         <Banner/>
 
         {/* Popular food slide */}
-        <PopularFoodSlide foods={foods}/>
+        <PopularFoodSlide foods={foods} setFoods={setFoods}/>
+        <Toaster/>
       </div>
     </>
   );
