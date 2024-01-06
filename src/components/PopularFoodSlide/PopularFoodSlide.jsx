@@ -69,21 +69,23 @@ const PopularFoodSlide = ({ foods, setFoods }) => {
                 Add new item to your kitchen
               </h2>
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-                <label htmlFor="image">
+                <label htmlFor="image" className="flex flex-col gap-2">
                   <span>Upload the food image</span>
                   <input
                     type="file"
                     {...register("image", {required:true})}
                     className="file-input file-input-bordered w-full max-w-xs mt-1"
                   />
+                  {errors.image && <span className="font-medium text-red-600">Image is required</span>}
                 </label>
-                <label htmlFor="food name">
+                <label htmlFor="food name" className="flex flex-col gap-2">
                   <input
                     type="text"
                     {...register("name", {required:true})}
                     placeholder="Food name"
                     className="input input-bordered w-full max-w-xs"
                   />
+                   {errors.image && <span className="font-medium text-red-600">Name is required</span>}
                 </label>
                     <button type="submit" className="btn btn-block bg-orange-500 text-white hover:bg-orange-600">Add Instantly</button>
               </form>
