@@ -58,7 +58,7 @@ const FoodSlide = ({ title, foods, setFoods, sliderId }) => {
     return <Loader />;
   }
   return (
-    <div className="my-28">
+    <div className="mt-12">
       {/* slider arrows */}
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-bold">{title}</h3>
