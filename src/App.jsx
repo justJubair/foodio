@@ -14,6 +14,8 @@ function App() {
     .then(data=> setFoods(data.Items))
   },[])
 
+  const recommendedItems = foods.filter(food=> food?.IsRecommended === true)
+  console.log(recommendedItems)
 
  
 if(foods.length<0){
@@ -29,7 +31,9 @@ if(foods.length<0){
         <Banner/>
 
         {/* Popular food slide */}
-        <PopularFoodSlide foods={foods} setFoods={setFoods}/>
+        <PopularFoodSlide title="Popular" foods={foods} setFoods={setFoods} sliderId="1"/>
+        {/* Popular food slide */}
+        <PopularFoodSlide title="Recommended" foods={recommendedItems} setFoods={setFoods} sliderId="2"/>
         <Toaster/>
       </div>
     </>

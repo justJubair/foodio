@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`
-const PopularFoodSlide = ({ foods, setFoods }) => {
+const PopularFoodSlide = ({ title, foods, setFoods, sliderId }) => {
   const {
     register,
     handleSubmit,
@@ -39,11 +39,11 @@ const PopularFoodSlide = ({ foods, setFoods }) => {
 
 
   const sliderLeft = () => {
-    let slider = document.getElementById("populer");
+    let slider = document.getElementById("slider"+ sliderId);
     slider.scrollLeft = slider.scrollLeft - 500;
   };
   const sliderRight = () => {
-    let slider = document.getElementById("populer");
+    let slider = document.getElementById("slider"+ sliderId);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
@@ -54,7 +54,7 @@ const PopularFoodSlide = ({ foods, setFoods }) => {
     <div className="my-28">
       {/* slider arrows */}
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-bold">Popular</h3>
+        <h3 className="text-xl font-bold">{title}</h3>
         <div className="flex items-center gap-2">
           <button
             className="btn btn-sm text-orange-500 mr-5"
@@ -111,7 +111,7 @@ const PopularFoodSlide = ({ foods, setFoods }) => {
       </div>
       {/* popular food row */}
       <div
-        id="populer"
+        id={`slider` + sliderId}
         className="w-full h-full whitespace-nowrap overflow-x-scroll relative space-x-4 scrollbar-hide scroll-smooth"
       >
         {foods?.map((food) => (
