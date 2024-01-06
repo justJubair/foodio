@@ -1,12 +1,12 @@
 // images
-import avatar2 from "../../assets/avatar-default.svg"
+import avatar2 from "../../assets/avatar-default.svg";
 // icons
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 
 const Navbar = () => {
   return (
-    <div className="max-w-screen-lg mx-auto">
+    <>
       {/* main container */}
       <div className="flex items-center justify-between py-8 ">
         {/* logo */}
@@ -32,8 +32,8 @@ const Navbar = () => {
           {/* dropdown menu */}
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn m-1 uppercase">
-             Menu
-             <IoIosArrowDown size={20} className="text-orange-500 ml-4"/>
+              Menu
+              <IoIosArrowDown size={20} className="text-orange-500 ml-4" />
             </div>
             <ul
               tabIndex={0}
@@ -62,14 +62,9 @@ const Navbar = () => {
         </div>
 
         {/* avatar */}
-        <img
-
-          className="w-14"
-          src={avatar2}
-          alt="logo"
-        />
+        <img className="w-14" src={avatar2} alt="logo" />
       </div>
-    </div>
+    </>
   );
 };
 export default Navbar;
