@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Banner from "./components/Banner/Banner";
 import Navbar from "./components/Navbar/Navbar";
-import PopularFoodSlide from "./components/PopularFoodSlide/PopularFoodSlide";
+import FoodSlide from "./components/FoodSlide/FoodSlide";
 import Loader from "./components/Loader/Loader";
 import { Toaster } from "react-hot-toast";
 
@@ -15,7 +15,7 @@ function App() {
   },[])
 
   const recommendedItems = foods.filter(food=> food?.IsRecommended === true)
-  console.log(recommendedItems)
+  const popularItems = foods.filter(food=> food?.IsPopular === true)
 
  
 if(foods.length<0){
@@ -31,9 +31,9 @@ if(foods.length<0){
         <Banner/>
 
         {/* Popular food slide */}
-        <PopularFoodSlide title="Popular" foods={foods} setFoods={setFoods} sliderId="1"/>
+        <FoodSlide title="Popular" foods={popularItems} setFoods={setFoods} sliderId="1"/>
         {/* Popular food slide */}
-        <PopularFoodSlide title="Recommended" foods={recommendedItems} setFoods={setFoods} sliderId="2"/>
+        <FoodSlide title="Recommended" foods={recommendedItems} setFoods={setFoods} sliderId="2"/>
         <Toaster/>
       </div>
     </>

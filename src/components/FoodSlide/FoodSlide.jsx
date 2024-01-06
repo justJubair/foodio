@@ -7,8 +7,8 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import toast from "react-hot-toast";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`
-const PopularFoodSlide = ({ title, foods, setFoods, sliderId }) => {
+const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`;
+const FoodSlide = ({ title, foods, setFoods, sliderId }) => {
   const {
     register,
     handleSubmit,
@@ -16,34 +16,41 @@ const PopularFoodSlide = ({ title, foods, setFoods, sliderId }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async(data) => {
-        const imageFile = {image: data.image[0]}
-        const itemId = Math.ceil(Math.random()*99990)
-        const name = data.name;
-        const dbResponse = await axios.post(image_hosting_api, imageFile, {
-            headers: {
-                "content-type": "multipart/form-data"
-            }
-        })
-        if(dbResponse?.data?.data?.display_url){
-
-            const newItem = {Id: itemId, Name: name, ImageUrl: dbResponse?.data?.data?.display_url}
-            setFoods([...foods, newItem])
-            toast.success(`${name} has been added`)
-            reset()
-
-        }
-       
-        
+  const onSubmit = async (data) => {
+    const imageFile = { image: data.image[0] };
+    const itemId = Math.ceil(Math.random() * 99990);
+    const name = data?.name;
+    const category = data?.category
+    const dbResponse = await axios.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (dbResponse?.data?.data?.display_url) {
+      const newItem = {
+        Id: itemId,
+        Name: name,
+        ImageUrl: dbResponse?.data?.data?.display_url,
+      };
+      if(category === "Popular"){
+        newItem.IsPopular= true
+      } else if(category === "Recommended"){
+        newItem.IsRecommended = true
+      }
+      console.log(category)
+      console.log(newItem)
+      setFoods([...foods, newItem]);
+      toast.success(`${name} has been added`);
+      reset();
+    }
   };
 
-
   const sliderLeft = () => {
-    let slider = document.getElementById("slider"+ sliderId);
+    let slider = document.getElementById("slider" + sliderId);
     slider.scrollLeft = slider.scrollLeft - 500;
   };
   const sliderRight = () => {
-    let slider = document.getElementById("slider"+ sliderId);
+    let slider = document.getElementById("slider" + sliderId);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
@@ -68,33 +75,63 @@ const PopularFoodSlide = ({ title, foods, setFoods, sliderId }) => {
               <h2 className="text-center font-medium mb-6 text-lg text-orange-500">
                 Add new item to your kitchen
               </h2>
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-6"
+              >
                 <label htmlFor="image" className="flex flex-col gap-2">
                   <span>Upload the food image</span>
                   <input
                     type="file"
-                    {...register("image", {required:true})}
+                    {...register("image", { required: true })}
                     className="file-input file-input-bordered w-full max-w-xs mt-1"
                   />
-                  {errors.image && <span className="font-medium text-red-600">Image is required</span>}
+                  {errors.image && (
+                    <span className="font-medium text-sm text-red-600">
+                      Image is required
+                    </span>
+                  )}
                 </label>
                 <label htmlFor="food name" className="flex flex-col gap-2">
                   <input
                     type="text"
-                    {...register("name", {required:true})}
+                    {...register("name", { required: true })}
                     placeholder="Food name"
                     className="input input-bordered w-full max-w-xs"
                   />
-                   {errors.image && <span className="font-medium text-red-600">Name is required</span>}
+                  {errors.name && (
+                    <span className="font-medium text-sm text-red-600">
+                      Name is required
+                    </span>
+                  )}
                 </label>
-                    <button type="submit" className="btn btn-block bg-orange-500 text-white hover:bg-orange-600">Add Instantly</button>
+                <label htmlFor="food name" className="flex flex-col gap-2">
+                  <select {...register("category")}  className="select select-bordered w-full max-w-xs">
+                    <option disabled>
+                      Popular or Recommended?
+                    </option>
+                    <option value="Popular">Popular</option>
+                    <option value="Recommended">Recommended</option>
+                  </select>
+                  {errors.category && (
+                    <span className="font-medium text-sm text-red-600">
+                      Category is required
+                    </span>
+                  )}
+                </label>
+                <button
+                  type="submit"
+                  className="btn btn-block bg-orange-500 text-white hover:bg-orange-600"
+                >
+                  Add Instantly
+                </button>
               </form>
               <div className="modal-action">
-                  <form method="dialog">
-                    {/* if there is a button in form, it will close the modal */}
-                    <button className="btn">Close</button>
-                  </form>
-                </div>
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn">Close</button>
+                </form>
+              </div>
             </div>
           </dialog>
           <MdChevronLeft
@@ -127,4 +164,4 @@ const PopularFoodSlide = ({ title, foods, setFoods, sliderId }) => {
     </div>
   );
 };
-export default PopularFoodSlide;
+export default FoodSlide;
