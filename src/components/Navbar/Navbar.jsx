@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <>
       {/* main container */}
-      <div className="flex items-center justify-between py-8 ">
+      <div className="flex items-center justify-between py-8 gap-4 md:gap-0">
         {/* logo */}
 
         <h2 className="text-2xl font-bold cursor-pointer">
@@ -25,15 +25,15 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search food..."
-              className="input input-bordered lg:w-[500px] pl-8"
+              className="input input-bordered w-full lg:w-[500px] pl-8"
             />
           </div>
 
           {/* dropdown menu */}
-          <div className="dropdown">
+          <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn m-1 uppercase">
               Menu
-              <IoIosArrowDown size={20} className="text-orange-500 ml-4" />
+              <IoIosArrowDown size={20} className="hidden text-orange-500 ml-4 md:block" />
             </div>
             <ul
               tabIndex={0}
@@ -62,7 +62,7 @@ const Navbar = () => {
         </div>
 
         {/* avatar */}
-        <img className="w-14" src={avatar2} alt="logo" />
+        <img className="hidden w-14 md:block" src={avatar2} alt="logo" />
       </div>
     </>
   );
