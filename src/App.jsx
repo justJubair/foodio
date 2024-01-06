@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import FoodSlide from "./components/FoodSlide/FoodSlide";
 import Loader from "./components/Loader/Loader";
 import { Toaster } from "react-hot-toast";
+import PreLoader from "./components/PreLoader/PreLoader";
 
 function App() {
   const [foods, setFoods] = useState([])
@@ -23,6 +24,7 @@ if(foods.length<0){
 }
   return (
     <>
+      <PreLoader/>
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Navbar */}
         <Navbar/>
