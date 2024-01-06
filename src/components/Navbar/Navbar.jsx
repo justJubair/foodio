@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between py-8 gap-4 md:gap-0">
         {/* logo */}
 
-        <h2 className="text-2xl font-bold cursor-pointer">
+        <h2 className="text-3xl font-bold cursor-pointer">
           foo<span className="text-orange-600">d</span>io
         </h2>
 
