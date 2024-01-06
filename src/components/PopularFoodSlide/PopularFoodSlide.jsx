@@ -1,8 +1,20 @@
 import Loader from "../Loader/Loader";
+import { useForm } from "react-hook-form"
+// Icons
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 /* eslint-disable react/prop-types */
 const PopularFoodSlide = ({ foods }) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm()
+    
+      const onSubmit = (data) => {
+            console.log(data)
+        }
+
   const sliderLeft = () => {
     let slider = document.getElementById("populer");
     slider.scrollLeft = slider.scrollLeft - 500;
