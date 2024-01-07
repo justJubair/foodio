@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import FoodSlide from "./components/FoodSlide/FoodSlide";
 import Loader from "./components/Loader/Loader";
 import { Toaster } from "react-hot-toast";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [foods, setFoods] = useState([]);
@@ -45,8 +46,12 @@ function App() {
           setFoods={setFoods}
           sliderId="2"
         />
-        <Toaster />
+       
       </div>
+
+      {/* Footer */}
+      <Footer/>
+      <Toaster />
     </>
   );
 }
