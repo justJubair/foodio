@@ -14,4 +14,11 @@
 
 - Demonstrated strong problem-solving skills by addressing challenges related to image handling and API integration, ensuring the website's functionality is robust and efficient.
 
+### Getting Started
+Run this project locally, clone the repository
+```
+git clone https://github.com/justJubair/foodio.git
+```
+
+
 
