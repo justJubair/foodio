@@ -1,8 +1,7 @@
-// images
-import avatar2 from "../../assets/avatar-default.svg";
 // icons
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
+import { RxAvatar } from "react-icons/rx";
 
 const Navbar = () => {
   return (
@@ -62,7 +61,8 @@ const Navbar = () => {
         </div>
 
         {/* avatar */}
-        <img className="hidden w-14 md:block" src={avatar2} alt="logo" />
+        {/* <img className="hidden w-14 md:block" src={avatar2} alt="logo" /> */}
+        <RxAvatar size={45} className="hidden md:block rounded-full p-2 text-white bg-orange-600"/>
       </div>
     </>
   );
