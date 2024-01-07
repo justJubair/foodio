@@ -38,15 +38,15 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <FaGoogle
               size={35}
-              className="p-2 rounded-full text-white bg-orange-600 md:bg-orange-100 md:text-orange-600"
+              className="p-2 cursor-pointer rounded-full text-white bg-orange-600 md:bg-orange-100 md:text-orange-600"
             />
             <FaTwitter
               size={35}
-              className="p-2 rounded-full text-white bg-orange-600 md:bg-orange-100 md:text-orange-600"
+              className="p-2 rounded-full cursor-pointer text-white bg-orange-600 md:bg-orange-100 md:text-orange-600"
             />
             <FaInstagram
               size={35}
-              className="p-2 rounded-full text-white bg-orange-600 md:bg-orange-100 md:text-orange-600"
+              className="p-2 rounded-full cursor-pointer text-white bg-orange-600 md:bg-orange-100 md:text-orange-600"
             />
           </div>
         </div>
