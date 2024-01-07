@@ -20,5 +20,15 @@ Run this project locally, clone the repository
 git clone https://github.com/justJubair/foodio.git
 ```
 
+Install dependencies
+```
+npm install
+```
+
+Create a free account on [imgbb](https://imgbb.com) and replace the API key with your own key on .env.local file
+```
+VITE_IMAGE_HOSTING_KEY=Your_api_key
+``` 
+
 
 
