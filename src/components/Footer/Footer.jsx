@@ -7,7 +7,7 @@ import { FaGoogle } from "react-icons/fa";
 const Footer = () => {
   return (
     // main container
-    <div className="flex items-start justify-evenly bg-gradient-to-b from-orange-400 to-yellow-500 mt-32 md:mt-40">
+    <div className="flex items-start justify-evenly bg-gradient-to-b from-orange-400 to-yellow-500 mt-32 md:mt-40 px-4 lg:px-0">
       {/* Search input and social logos */}
       <div className="space-y-16 mt-10">
         <div className="relative">
@@ -16,7 +16,7 @@ const Footer = () => {
             placeholder="Enter Your Email.."
             className="input input-bordered rounded-2xl w-full lg:w-[450px]"
           />
-          <button className="btn btn-sm bg-orange-600 text-white absolute right-16 top-2 hover:bg-orange-500">
+          <button className="btn btn-sm bg-orange-600 text-white absolute md:right-3 lg:right-16 top-2 hover:bg-orange-500">
             Subscribe
             <FaArrowRightLong />
           </button>
@@ -47,7 +47,7 @@ const Footer = () => {
       </div>
 
       {/* image */}
-      <img className="w-80" src={footerImg} alt="" />
+      <img className="hidden md:block w-80" src={footerImg} alt="" />
     </div>
   );
 };
