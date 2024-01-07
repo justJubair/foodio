@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "http://www.api.technicaltest.quadtheoryltd.com/api/Item?page=1&pageSize=10"
+      "https://raw.githubusercontent.com/justJubair/foodio/main/public/data.json"
     )
       .then((res) => res.json())
       .then((data) => setFoods(data.Items));
